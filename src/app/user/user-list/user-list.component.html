@@ -1,19 +1,17 @@
-<!-- <button (click)="toggleUsersListOpened()">Open/Close Users</button> -->
-
-@for(variation of usersVariations; track variation) {
-<button (click)="changeCurrentUsersVariation(variation)">
+@for(variation of usersService.usersVariations; track variation) {
+<button (click)="usersService.changeCurrentUsersVariation(variation)">
   {{ variation }}
 </button>
 }
-{{ currentUserVariation }}
+{{ usersService.currentUsersVariation }}
 
-@if(currentUserVariation === "local"){
+@if(usersService.currentUsersVariation === "local"){
 <div>
-  @for(user of users; track user.name){
+  @for(user of usersService.users; track user.name){
   <app-user-card [user]="user"></app-user-card>
   }
 </div>
-} @if(currentUserVariation === "api") { @for(user of apiUsers; track user.id){
+} @if(usersService.currentUsersVariation === "api") { @for(user of usersService.apiUsers; track user.id){
 <div class="user">
   <h4>{{ user.name }}</h4>
   <h5>{{ user.username }}</h5>
